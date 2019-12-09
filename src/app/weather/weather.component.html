@@ -1,0 +1,27 @@
+<div>
+  <mat-card class="card-personal-info" *ngIf="contact">
+    <h2 class="header-personal-info">
+      {{contact.weather.title}}
+    </h2>
+    <mat-card-content class="weather-content">
+      <img mat-card-image class="weather-img" src={{contact.weather.icon}}>
+      <div class="container-temperature">
+        <div *ngIf="toggledTemperature == true; else Fahrenheit">
+          <p class="temperature-value">{{contact.weather.temperature | temperaturePipe}}</p>
+        </div>
+        <div>
+          <ng-template #Fahrenheit>
+            <p class = "temperature-value">
+              {{contact.weather.temperature | celsiusToFahrenheitPipe }}
+            </p>
+          </ng-template>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-footer class="weather-footer">
+      <span
+        [appHighlight]="colorRange"
+        class="weather-water">Water {{contact.weather.water | temperaturePipe }}</span>
+    </mat-card-footer>
+  </mat-card>
+</div>

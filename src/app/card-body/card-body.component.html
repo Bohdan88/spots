@@ -1,0 +1,67 @@
+<div>
+  <mat-grid-list
+    *ngIf="contacts" class="card-body"
+    cols="5" rowHeight="450px">
+    <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="2"
+    >
+      <mat-card class="city-card">
+        <img mat-card-image
+             class='city-img'
+             src={{selectedContact.img}}>
+        <mat-card-content class="card-content">
+          <ul class="contacts-list">
+            <li
+              *ngFor="let contact of contacts"
+              [class.selected]="contact === selectedContact"
+              (click)="onSelect(contact)"
+            >
+              <a> {{contact.address}}</a>
+            </li>
+          </ul>
+          <div>
+            <h2 class="reviews">Righteous indignation & like</h2>
+          </div>
+          <mat-divider></mat-divider>
+          <mat-grid-list cols="2">
+            <mat-grid-tile class="address-info">
+              <mat-list *ngIf="selectedContact" class="address-list">
+                <h2 class="address-header">Address:</h2>
+                <mat-list-item
+                  *ngFor="let item of selectedContact.addressDetailed | keyvalue"
+                  class="capitalize"
+                >
+                  <span class="address-key">{{item.key}}:</span>{{item.value}}
+                </mat-list-item>
+                <mat-list-item>
+                  <span class="address-key">Tel:</span> {{selectedContact.phone | phoneNumber}}
+                </mat-list-item>
+              </mat-list>
+            </mat-grid-tile>
+            <mat-grid-tile class="address-info">
+              <img mat-card-avatar class='user-avatar' src={{selectedContact.social_info.img}}>
+
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-card-content>
+        <mat-card-footer class="address-footer">
+        </mat-card-footer>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="1"
+      class="selected-tile">
+      <app-weather [contact]="selectedContact"></app-weather>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="1"
+      class="selected-tile">
+      <app-chosen-option
+        [contact]="selectedContact"
+      ></app-chosen-option>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

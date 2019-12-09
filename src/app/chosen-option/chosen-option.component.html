@@ -1,0 +1,30 @@
+<div>
+  <mat-card class="card-personal-info" *ngIf="contact">
+    <h3 class="header-personal-info">
+      {{contact.social_info.title}}
+    </h3>
+    <mat-card-content class="content-personal-info">
+      <img mat-card-avatar class='user-avatar' src={{contact.social_info.img}}>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-footer>
+      <mat-grid-list rowHeight="70px" cols="2">
+        <mat-grid-tile>
+          <mat-list>
+            <ul class="item-personal-info">
+              <li> {{contact.social_info.followers}}</li>
+              <li class="follow-personal-info"> Followers</li>
+            </ul>
+          </mat-list>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <ul class="item-personal-info-following">
+            <li> {{contact.social_info.following}}</li>
+            <li class="follow-personal-info"> Following</li>
+          </ul>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+    </mat-card-footer>
+  </mat-card>
+</div>
